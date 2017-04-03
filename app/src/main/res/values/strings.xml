@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">干货集中营</string>
+
+    <!--common-->
+    <string name="nb.common.empty">Empty</string>
+
+
+    <!--fragment title-->
+    <string name="nb.fragment.title.recommend">每日推荐</string>
+    <string name="nb.fragment.title.welfare">福利</string>
+    <string name="nb.fragment.title.android">Android</string>
+
+</resources>
