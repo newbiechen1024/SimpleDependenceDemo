@@ -6,14 +6,14 @@ import com.google.gson.annotations.SerializedName;
  * Created by newbiechen on 17-4-3.
  */
 
-public class ResponseBean {
+public class ResponseBean<T> {
     /**
      * isError : false
      * results : string
      */
     @SerializedName("error")
     private boolean isError;
-    private String results;
+    private T results;
 
     public boolean isError() {
         return isError;
@@ -23,11 +23,11 @@ public class ResponseBean {
         this.isError = error;
     }
 
-    public String getResults() {
+    public T getResults() {
         return results;
     }
 
-    public void setResults(String results) {
+    public void setResults(T results) {
         this.results = results;
     }
 }

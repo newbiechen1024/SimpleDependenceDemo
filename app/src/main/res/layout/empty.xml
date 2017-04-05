@@ -9,6 +9,5 @@
         android:layout_height="wrap_content"
         android:text="@string/nb.common.empty"
         android:textColor="@color/black"
-        android:textSize="24dp"/>
-
+        android:textSize="@dimen/nb.text.size.xlarge"/>
 </RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/nb.adapter.card.size"
+                 android:layout_margin="@dimen/nb.margin.normal">
+
+    <!--card-->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <ImageView
+            android:id="@+id/card_iv_show"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nb.adapter.card.image.height"
+            android:scaleType="center"
+            tools:src="@mipmap/ic_launcher"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/nb.padding.normal">
+            <TextView
+                android:id="@+id/card_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/nb.adapter.card.text.size"
+                android:textColor="@color/black"
+                android:maxLines="2"
+                android:ellipsize="end"
+                tools:text="测试"/>
+
+            <TextView
+                android:id="@+id/card_tv_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="@dimen/nb.adapter.card.text.hint"
+                tools:text="斗鱼时刻"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/card_tv_tag"
+        android:layout_width="48dp"
+        android:layout_height="26dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:background="@color/black_translucent"
+        android:textColor="@color/white"
+        android:textSize="@dimen/nb.adapter.card.text.hint"
+        tools:text="话题"/>
+</RelativeLayout>

@@ -15,26 +15,11 @@ import android.view.ViewGroup;
 
 public abstract class BaseFragment extends Fragment{
     private View root = null;
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        int resId = createView();
-        root = inflater.inflate(resId,container,false);
-        return root;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initView(savedInstanceState);
-        initWidget(savedInstanceState);
-        initClick();
-        processLogic(savedInstanceState);
-    }
 
     @LayoutRes
     protected abstract int createView();
 
+    /*******************************init area*********************************/
     /**
      * 初始化View
      */
@@ -58,16 +43,35 @@ public abstract class BaseFragment extends Fragment{
     protected void initWidget(Bundle savedInstanceState){
     }
 
+    /******************************lifecycle area*****************************************/
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        int resId = createView();
+        root = inflater.inflate(resId,container,false);
+        return root;
+    }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(savedInstanceState);
+        initWidget(savedInstanceState);
+        initClick();
+        processLogic(savedInstanceState);
+    }
+
+    /**************************公共类*******************************************/
     public String getName(){
         return getClass().getName();
     }
-    /**************************公共类*******************************************/
 
-    public <VT> VT getViewById(int id){
+    protected <VT> VT getViewById(int id){
         if (root == null){
             return  null;
         }
         return (VT) root.findViewById(id);
     }
 }
+
+

@@ -123,5 +123,50 @@ NetRepository:网络交互的接口
    }
    ```
 
+## 在Retrofit中Observable<List<String>>什么意思
 
+## GreenDao的使用
 
+## String is not a entity
+
+1. 利用GreenDao实现一对多和一对一的关系。(知道@ToMany @ToOne @joinEntity)
+2. 如何在GreenDao中添加List<String> 需要知道转换其Convert的使用。基础类型是无法使用List的。
+3. GreenDao类中能否存在list,或者中
+```java
+@Entity
+public class RecommendBean {
+
+    @Id(autoincrement = true)
+    private int id;
+    @ToMany(referencedJoinProperty = "")
+    @SerializedName("Android")
+    private List<ArticleBean> androidList;
+    @ToMany
+    @SerializedName("iOS")
+    private List<ArticleBean> iosList;
+    @ToMany
+    @SerializedName("休息视频")
+    private List<ArticleBean> relaxVideoList;
+    @ToMany
+    @SerializedName("拓展资源")
+    private List<ArticleBean> extraResourceList;
+    @ToMany
+    @SerializedName("瞎推荐")
+    private List<ArticleBean> randomRecommendList;
+}
+```
+其中的List表示什么意思。 我的理解是List并不是Bean存储在数据库中的字段，而是在生成的时候获取的字段。即存储的时候只保存了id
+但是在生成的时候通过一对一或者一对多的关系，生成这个List。
+
+所以说这个RecommendBean并不能加入到数据库中，应该是我们从数据库中获取数据然后生成的东西。应该是要在每个Article中加上一个
+类型名，叫做property。名字为"每日推荐"，然后通过搜索这样的字段进行整合数据而已。
+
+问题:N:M是什么关系？
+
+# 4月5日
+
+1. 有必要Helper 和 Repository都进行单例吗
+2. GreenDao的原理。比如说其创建过程，Session的作用。
+3. 创建GreenDao一直有问题- -，后来才发现是插件版本的问题
+4. GreenDao save无法使用但是insert就可以使用
+5. 学习RxJava2.0的新调用

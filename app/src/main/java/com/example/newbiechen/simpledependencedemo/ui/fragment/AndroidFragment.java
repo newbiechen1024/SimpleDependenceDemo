@@ -33,8 +33,6 @@ public class AndroidFragment extends BaseFragment {
 
     }
 
-
-
     @Override
     public String getName() {
         return App.getContext().

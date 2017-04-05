@@ -1,13 +1,17 @@
 package com.example.newbiechen.simpledependencedemo.model.net;
 
+import android.support.annotation.StringRes;
 import android.util.Log;
 
+import com.example.newbiechen.simpledependencedemo.App;
+import com.example.newbiechen.simpledependencedemo.R;
+import com.example.newbiechen.simpledependencedemo.model.bean.ArticleBean;
 import com.example.newbiechen.simpledependencedemo.model.bean.RecommendBean;
 import com.example.newbiechen.simpledependencedemo.model.bean.ResponseBean;
 import com.example.newbiechen.simpledependencedemo.model.net.api.ArticleApi;
-import com.google.gson.Gson;
 
 import java.util.Calendar;
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -51,19 +55,30 @@ public class NetWorkRepository {
 
 
     public Observable<RecommendBean> getRecommendBean(int year, int month, int day){
-        Observable<ResponseBean> observable = mArticleApi.getResponse(year,month,day);
-        return toObservable(observable,RecommendBean.class);
+        Observable<ResponseBean<RecommendBean>> observable = mArticleApi.getRecommendBean(year+"",month+"",day+"");
+        return toObservable(observable);
     }
 
-    private <T> Observable<T> toObservable(Observable<ResponseBean> observable,Class<T> type){
+    public Observable<List<ArticleBean>> getWelfareArticle(int page){
+        String type = getString(R.string.nb_resource_type_welfare);
+        Observable<ResponseBean<List<ArticleBean>>> observable = mArticleApi.getArticleList(type,page+"");
+        return toObservable(observable);
+    }
+
+    private <T> Observable<T> toObservable(Observable<ResponseBean<T>> observable){
         return observable.map(
                 responseBean -> {
                     //这里有点问题，返回null比较不友好。但是不知道怎么改
                     if (responseBean.isError()){
                         return null;
                     }
-                    return new Gson().fromJson(responseBean.getResults(),type);
+                    return responseBean.getResults();
                 }
-        ).cast(type);
+        );
+    }
+
+    private String getString(@StringRes int res){
+        return App.getContext()
+                .getResources().getString(res);
     }
 }

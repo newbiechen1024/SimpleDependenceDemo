@@ -15,11 +15,18 @@ import java.util.List;
  */
 
 public abstract class BaseListAdapter <T> extends RecyclerView.Adapter {
+
     private static final String TAG = "BaseListAdapter";
-
-    private final List<T> mList = new ArrayList<T>();
-
+    /*common statement*/
+    private final List<T> mList = new ArrayList<>();
     private OnItemClickListener mListener;
+
+
+    /************************abstract area************************/
+    protected abstract View createView(Context context, int viewType);
+
+
+    /*************************rewrite logic area***************************************/
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = createView(parent.getContext(),viewType);
@@ -37,8 +44,6 @@ public abstract class BaseListAdapter <T> extends RecyclerView.Adapter {
         return holder;
     }
 
-    protected abstract View createView(Context context, int viewType);
-
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (! (holder.itemView instanceof IAdapter))
@@ -51,6 +56,8 @@ public abstract class BaseListAdapter <T> extends RecyclerView.Adapter {
     public int getItemCount() {
         return mList.size();
     }
+
+    /******************************public area***********************************/
 
     public void setOnItemClickListener(OnItemClickListener mListener) {
         this.mListener = mListener;
@@ -80,6 +87,8 @@ public abstract class BaseListAdapter <T> extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
+
+    /***************************inner class area***********************************/
     public interface OnItemClickListener{
         void onItemClick(View view, int pos);
     }

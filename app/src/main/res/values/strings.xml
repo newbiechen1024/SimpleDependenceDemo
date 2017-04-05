@@ -10,4 +10,11 @@
     <string name="nb.fragment.title.welfare">福利</string>
     <string name="nb.fragment.title.android">Android</string>
 
+    <!--resource name-->
+    <string name="nb.resource.type.android">安卓</string>
+    <string name="nb.resource.type.ios">苹果</string>
+    <string name="nb.resource.type.welfare">福利</string>
+    <string name="nb.resource.type.exploit">拓展</string>
+    <string name="nb.resource.type.video">视频</string>
+    <string name="nb.resource.type.random">瞎推</string>
 </resources>

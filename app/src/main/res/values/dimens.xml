@@ -20,7 +20,10 @@
     <dimen name="nb.margin.large">16dp</dimen>
     <dimen name="nb.margin.xlarge">24dp</dimen>
 
+    <dimen name="nb.text.size.xlarge">30sp</dimen>
     <!--adapter-->
-    <dimen name="nb.adapter.card.size">80dp</dimen>
-    <dimen name="nb.adapter.card.image.height">40dp</dimen>
+    <dimen name="nb.adapter.card.size">150dp</dimen>
+    <dimen name="nb.adapter.card.image.height">80dp</dimen>
+    <dimen name="nb.adapter.card.text.size">15sp</dimen>
+    <dimen name="nb.adapter.card.text.hint">12sp</dimen>
 </resources>

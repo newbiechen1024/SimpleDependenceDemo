@@ -1,15 +1,19 @@
 package com.example.newbiechen.simpledependencedemo.model.bean;
 
+import com.example.newbiechen.simpledependencedemo.model.net.api.ArticleApi;
 import com.google.gson.annotations.SerializedName;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.ToMany;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by newbiechen on 17-4-3.
  */
-
 public class RecommendBean {
-
 
     @SerializedName("Android")
     private List<ArticleBean> androidList;
@@ -70,5 +74,29 @@ public class RecommendBean {
 
     public void setWelfareList(List<ArticleBean> welfareList) {
         this.welfareList = welfareList;
+    }
+
+    public List<ArticleBean> getAllArticle(){
+        List<ArticleBean> articleBean = new ArrayList<>();
+        if (androidList != null){
+            articleBean.addAll(androidList);
+        }
+        if (iosList != null){
+            articleBean.addAll(iosList);
+        }
+        if (relaxVideoList != null){
+            articleBean.addAll(relaxVideoList);
+        }
+        if (extraResourceList != null){
+            articleBean.addAll(extraResourceList);
+        }
+        if (randomRecommendList != null){
+            articleBean.addAll(randomRecommendList);
+        }
+        if (welfareList != null){
+            articleBean.addAll(welfareList);
+        }
+
+        return articleBean;
     }
 }

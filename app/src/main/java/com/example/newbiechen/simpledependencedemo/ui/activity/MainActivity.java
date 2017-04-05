@@ -13,19 +13,24 @@ import com.example.newbiechen.simpledependencedemo.ui.base.BaseActivity;
 import com.example.newbiechen.simpledependencedemo.ui.base.BaseFragment;
 import com.example.newbiechen.simpledependencedemo.ui.fragment.AndroidFragment;
 import com.example.newbiechen.simpledependencedemo.ui.fragment.RecommendFragment;
-import com.example.newbiechen.simpledependencedemo.ui.fragment.TestFragment;
 import com.example.newbiechen.simpledependencedemo.ui.fragment.WelfareFragment;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
+    /*final Statement*/
+    private static final String TAG = "MainActivity";
+
+    /*UI Statement*/
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPager mVp;
 
+    /*Common Statement*/
     private List<BaseFragment> mFragmentList = new ArrayList<>();
+
+    /**************************************init area************************************************/
     @Override
     protected void onCreateView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
@@ -47,15 +52,21 @@ public class MainActivity extends BaseActivity {
 
         //binder width viewPager
         mVp.setAdapter(new MyFragmentPager(getSupportFragmentManager()));
+        mVp.setOffscreenPageLimit(3);
         mTabLayout.setupWithViewPager(mVp);
     }
 
+    /*logic*/
     @Override
     protected void processLogic(Bundle savedInstanceState) {
         supportActionBar(mToolbar);
         //shade left arrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
+
+
+
+    /*******************************inner class area*****************************************************/
 
     class MyFragmentPager extends FragmentPagerAdapter {
 

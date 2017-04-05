@@ -11,22 +11,10 @@ import android.support.v7.widget.Toolbar;
  * Created by PC on 2016/9/8.
  */
 public abstract class BaseActivity extends AppCompatActivity {
-
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        onCreateView(savedInstanceState);
-        initWidget(savedInstanceState);
-        initClick();
-        processLogic(savedInstanceState);
-    }
-
-    /************************需要继承的抽象类************************************/
-    /**
-     * 初始化View
-     */
+    /****************************abstract area*************************************/
     protected abstract void onCreateView(Bundle savedInstanceState);
+
+    /************************init area************************************/
 
     /**
      * 初始化零件
@@ -45,12 +33,29 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void processLogic(Bundle savedInstanceState){
     }
 
-    /**************************公共类*******************************************/
-    public <VT> VT getViewById(int id){
+    /*************************lifecycle area*****************************************************/
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        onCreateView(savedInstanceState);
+        initWidget(savedInstanceState);
+        initClick();
+        processLogic(savedInstanceState);
+    }
+
+    /**************************used method area*******************************************/
+
+    protected void startActivity(Class<? extends AppCompatActivity> activity){
+        Intent intent = new Intent(this,activity);
+        startActivity(intent);
+    }
+
+    protected  <VT> VT getViewById(int id){
         return (VT) findViewById(id);
     }
 
-    public ActionBar supportActionBar(Toolbar toolbar){
+    protected ActionBar supportActionBar(Toolbar toolbar){
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
@@ -60,8 +65,4 @@ public abstract class BaseActivity extends AppCompatActivity {
         return actionBar;
     }
 
-    public void startActivity(Class<? extends AppCompatActivity> activity){
-        Intent intent = new Intent(this,activity);
-        startActivity(intent);
-    }
 }

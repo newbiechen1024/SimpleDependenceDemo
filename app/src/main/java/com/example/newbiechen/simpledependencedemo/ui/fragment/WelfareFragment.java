@@ -7,6 +7,7 @@ import android.view.ViewStub;
 
 import com.example.newbiechen.simpledependencedemo.App;
 import com.example.newbiechen.simpledependencedemo.R;
+import com.example.newbiechen.simpledependencedemo.ui.adapter.WelfareAdapter;
 import com.example.newbiechen.simpledependencedemo.ui.base.BaseFragment;
 
 /**
@@ -17,6 +18,8 @@ public class WelfareFragment extends BaseFragment {
     private SwipeRefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
     private ViewStub mEmptyView;
+
+    private WelfareAdapter mAdapter;
     @Override
     protected int createView() {
         return R.layout.fragment_welfare;
