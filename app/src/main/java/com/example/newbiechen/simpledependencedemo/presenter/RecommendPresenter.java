@@ -1,22 +1,14 @@
 package com.example.newbiechen.simpledependencedemo.presenter;
 
-import android.util.Log;
-
 import com.example.newbiechen.simpledependencedemo.model.bean.ArticleBean;
 import com.example.newbiechen.simpledependencedemo.model.bean.RecommendBean;
 import com.example.newbiechen.simpledependencedemo.model.data.DBRepository;
 import com.example.newbiechen.simpledependencedemo.model.net.NetObserver;
 import com.example.newbiechen.simpledependencedemo.model.net.NetWorkRepository;
-import com.example.newbiechen.simpledependencedemo.presenter.contract.RecommendContract;
-
-import org.reactivestreams.Subscription;
+import com.example.newbiechen.simpledependencedemo.presenter.contract.CommonContract;
 
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -24,12 +16,12 @@ import io.reactivex.schedulers.Schedulers;
  * Created by newbiechen on 17-4-3.
  */
 
-public class RecommendPresenter implements RecommendContract.Presenter {
+public class RecommendPresenter implements CommonContract.Presenter {
 
     private static final String TAG = "RecommendPresenter";
-    private RecommendContract.View mRecommendView;
+    private CommonContract.View mRecommendView;
 
-    public RecommendPresenter (RecommendContract.View view){
+    public RecommendPresenter (CommonContract.View view){
         mRecommendView = view;
         mRecommendView.setPresenter(this);
     }
@@ -92,7 +84,7 @@ public class RecommendPresenter implements RecommendContract.Presenter {
     @Override
     public void saveArticleToDB(List<ArticleBean> articleList) {
         DBRepository.getInstance()
-                .saveRecommend(articleList);
+                .refreshRecommend(articleList);
     }
 
     @Override

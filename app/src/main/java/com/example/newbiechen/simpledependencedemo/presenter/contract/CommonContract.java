@@ -11,9 +11,9 @@ import java.util.List;
  * Created by newbiechen on 17-4-3.
  */
 
-public interface RecommendContract {
+public interface CommonContract {
 
-    interface View extends BaseView<Presenter>{
+    interface View <T extends BasePresenter> extends BaseView<T>{
         void startRefreshAnim();
         void finishRefreshAnim();
         void finishRefresh(List<ArticleBean> articleList);

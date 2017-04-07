@@ -65,6 +65,9 @@ public class ArticleBeanDao extends AbstractDao<ArticleBean, String> {
                 "\"USED\" INTEGER NOT NULL ," + // 8: used
                 "\"WHO\" TEXT," + // 9: who
                 "\"IMAGES_URL_LIST\" TEXT);"); // 10: imagesUrlList
+        // Add Indexes
+        db.execSQL("CREATE INDEX " + constraint + "IDX_ARTICLE_BEAN_PROPERTY ON ARTICLE_BEAN" +
+                " (\"PROPERTY\" ASC);");
     }
 
     /** Drops the underlying database table. */

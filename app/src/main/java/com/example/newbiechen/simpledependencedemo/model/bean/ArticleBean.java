@@ -9,6 +9,7 @@ import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.JoinProperty;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.ToOne;
@@ -36,6 +37,7 @@ public class ArticleBean {
     @SerializedName("_id")
     @Id private String strId;
     //属性:用来确定是哪个版块的数据
+    @Index
     private String property;
     private String createdAt;
     private String desc;

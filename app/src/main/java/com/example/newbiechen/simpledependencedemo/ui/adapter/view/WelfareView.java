@@ -38,6 +38,8 @@ public class WelfareView extends RelativeLayout implements IAdapter<ArticleBean>
     private void init(){
         mView = LayoutInflater.from(getContext())
                 .inflate(R.layout.adapter_welfare,this,false);
+        mView.getLayoutParams()
+                .height = (int)(300+Math.random()*400);
         addView(mView);
 
         mIvShow = getViewById(R.id.welfare_iv_show);

@@ -5,15 +5,13 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewStub;
 
 import com.example.newbiechen.simpledependencedemo.App;
 import com.example.newbiechen.simpledependencedemo.R;
 import com.example.newbiechen.simpledependencedemo.model.bean.ArticleBean;
-import com.example.newbiechen.simpledependencedemo.model.bean.RecommendBean;
 import com.example.newbiechen.simpledependencedemo.presenter.RecommendPresenter;
-import com.example.newbiechen.simpledependencedemo.presenter.contract.RecommendContract;
+import com.example.newbiechen.simpledependencedemo.presenter.contract.CommonContract;
 import com.example.newbiechen.simpledependencedemo.ui.adapter.RecommendAdapter;
 import com.example.newbiechen.simpledependencedemo.ui.base.BaseFragment;
 
@@ -23,7 +21,7 @@ import java.util.List;
  * Created by newbiechen on 17-3-31.
  */
 
-public class RecommendFragment extends BaseFragment implements RecommendContract.View {
+public class RecommendFragment extends BaseFragment implements CommonContract.View<CommonContract.Presenter> {
     private static final String TAG = "RecommendFragment";
 
     /*ui statement*/
@@ -33,7 +31,7 @@ public class RecommendFragment extends BaseFragment implements RecommendContract
 
     /*common statement*/
     private RecommendAdapter mAdapter;
-    private RecommendContract.Presenter mPresenter;
+    private CommonContract.Presenter mPresenter;
     private final Handler mHandler = new Handler();
 
     /************************************init area*********************************************/
@@ -87,7 +85,7 @@ public class RecommendFragment extends BaseFragment implements RecommendContract
     }
 
     @Override
-    public void setPresenter(RecommendContract.Presenter presenter) {
+    public void setPresenter(CommonContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
