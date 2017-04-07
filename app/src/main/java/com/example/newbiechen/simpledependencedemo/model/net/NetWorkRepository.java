@@ -65,6 +65,14 @@ public class NetWorkRepository {
         return toObservable(observable);
     }
 
+    public Observable<List<ArticleBean>> getAndroidArticle(int page){
+        String type = getString(R.string.nb_fragment_title_android);
+        Observable<ResponseBean<List<ArticleBean>>> observable = mArticleApi.getArticleList(type,page+"");
+        return toObservable(observable);
+    }
+
+
+
     private <T> Observable<T> toObservable(Observable<ResponseBean<T>> observable){
         return observable.map(
                 responseBean -> {

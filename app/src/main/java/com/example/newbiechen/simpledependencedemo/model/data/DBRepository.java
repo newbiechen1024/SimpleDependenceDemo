@@ -27,8 +27,8 @@ public class DBRepository {
     private static final String DELETE_EXTRA_ARTICLE = "delete from "+ArticleBeanDao.TABLENAME
             +" where "+ArticleBeanDao.Properties.PublishedAt.columnName+" in("
             +" select "+ArticleBeanDao.Properties.PublishedAt.columnName+" from "+ArticleBeanDao.TABLENAME+" where "
-            + ArticleBeanDao.Properties.Property.columnName +" = "+"'福利' "
-            +"order by "+ArticleBeanDao.Properties.PublishedAt.columnName+" asc"
+            + ArticleBeanDao.Properties.Property.columnName +" = "+"?"
+            +" order by "+ArticleBeanDao.Properties.PublishedAt.columnName+" asc"
             + " limit ?)";
 
     private static DBRepository sInstance;
@@ -71,15 +71,31 @@ public class DBRepository {
         saveArticle(property,daoProperty,articleBeans);
 
         //只允许保留20条数据
-        int count = (int)mSession.getArticleBeanDao()
-                .count();
+        int count = getArticleList(property)
+                .size();
         if (count > 20){
             int delCount = count - 20;
             DaoHelper.getInstance()
                     .getDatabase()
-                    .execSQL(DELETE_EXTRA_ARTICLE,new Object[]{delCount});
+                    .execSQL(DELETE_EXTRA_ARTICLE,new Object[]{property,delCount});
         }
     }
+
+    public void updateAndroid(List<ArticleBean> articleBeans){
+        String property = getString(R.string.nb_fragment_title_android);
+        Property daoProperty = ArticleBeanDao.Properties.StrId;
+        saveArticle(property,daoProperty,articleBeans);
+        //只允许保留20条数据
+        int count = getArticleList(property)
+                .size();
+        if (count > 20){
+            int delCount = count - 20;
+            DaoHelper.getInstance()
+                    .getDatabase()
+                    .execSQL(DELETE_EXTRA_ARTICLE,new Object[]{"Android",delCount});
+        }
+    }
+
 
     /**
      * 判断是Update还是insert数据。
@@ -89,6 +105,7 @@ public class DBRepository {
      */
     private void saveArticle(String property,Property daoProperty,List<ArticleBean> articleBeans){
         if (articleBeans == null || articleBeans.size() == 0) return;
+
         for (ArticleBean bean : articleBeans){
             bean.setProperty(property);
             if (isArticleExist(daoProperty,bean)){
@@ -138,6 +155,28 @@ public class DBRepository {
             @Override
             public void subscribe(ObservableEmitter<List<ArticleBean>> e) throws Exception {
                 String property = getString(R.string.nb_fragment_title_welfare);
+
+                List<ArticleBean> list = mSession.getArticleBeanDao()
+                        .queryBuilder()
+                        .where(ArticleBeanDao.Properties.Property.eq(property))
+                        .orderDesc(ArticleBeanDao.Properties.PublishedAt)
+                        .build()
+                        .list();
+                if (list == null){
+                    list = new ArrayList<ArticleBean>();
+                }
+
+                e.onNext(list);
+                e.onComplete();
+            }
+        });
+    }
+
+    public Observable<List<ArticleBean>> getAndroid(){
+        return Observable.create(new ObservableOnSubscribe<List<ArticleBean>>() {
+            @Override
+            public void subscribe(ObservableEmitter<List<ArticleBean>> e) throws Exception {
+                String property = getString(R.string.nb_fragment_title_android);
 
                 List<ArticleBean> list = mSession.getArticleBeanDao()
                         .queryBuilder()

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:background="@color/white"
+              android:layout_margin="@dimen/nb.margin.normal"
+              android:padding="@dimen/nb.padding.small">
+
+    <ImageView
+        android:id="@+id/android_iv_show"
+        android:layout_width="@dimen/nb.adapter.card.image.height"
+        android:layout_height="@dimen/nb.adapter.card.image.height"
+        android:scaleType="center"
+        android:visibility="gone"
+        tools:src="@mipmap/ic_launcher"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/nb.margin.normal">
+        <TextView
+            android:id="@+id/android_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:maxLines="2"
+            tools:text="Android大神的建议"/>
+
+        <TextView
+            android:id="@+id/android_tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            tools:text="Newbiechen"/>
+    </LinearLayout>
+</LinearLayout>

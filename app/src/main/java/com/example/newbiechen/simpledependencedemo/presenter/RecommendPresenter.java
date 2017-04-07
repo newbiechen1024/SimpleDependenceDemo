@@ -1,5 +1,7 @@
 package com.example.newbiechen.simpledependencedemo.presenter;
 
+import android.util.Log;
+
 import com.example.newbiechen.simpledependencedemo.model.bean.ArticleBean;
 import com.example.newbiechen.simpledependencedemo.model.bean.RecommendBean;
 import com.example.newbiechen.simpledependencedemo.model.data.DBRepository;
@@ -43,6 +45,7 @@ public class RecommendPresenter implements CommonContract.Presenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((articleList)->{
+                    Log.d(TAG, "refreshFromDB: "+articleList.size());
                     mRecommendView.finishRefresh(articleList);
                 });
     }
