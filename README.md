@@ -1,2 +1,6 @@
 # SimpleDependenceDemo
-SimpleDemo to study how to connect with rxjava,gson,greendao,retrofit to create a mvp demo
+如何使用RxJava,Retrofit,GreenDao,Gson搭建一个MVP框架的简单App。
+
+注:API来源于干活集中营。
+
+
